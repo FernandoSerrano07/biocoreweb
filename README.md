@@ -25,12 +25,17 @@ python3 -m http.server 8080
 # y abre http://localhost:8080
 ```
 
+## Contacto
+
+Los datos de contacto están en la sección `#contacto` de `index.html`:
+
+- **WhatsApp:** +503 7056-4109 (enlaces `https://wa.me/50370564109`, dos lugares).
+- **Correo:** biocore.sv@gmail.com (enlaces `mailto:`, dos lugares).
+
+Si cambian, actualiza los dos lugares de cada uno.
+
 ## Antes de publicar
 
-Busca `PENDIENTE` y `503XXXXXXXX` en `index.html` y reemplaza:
-
-- [ ] **WhatsApp:** el número en los dos enlaces `https://wa.me/503XXXXXXXX` (formato 503 + 8 dígitos, sin espacios) y el texto `[NÚMERO]`.
-- [ ] **Correo:** `CORREO-PENDIENTE` en los dos enlaces `mailto:` y el texto `[CORREO]`.
 - [ ] **Imagen para compartir:** cuando tengas el dominio, cambia `img/compartir.png` en la etiqueta `og:image` por la dirección completa (`https://tu-dominio/img/compartir.png`).
 
 ## Publicar
