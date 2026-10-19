@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="es-SV">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIOCORE · Control de asistencia desde el celular</title>
+<meta name="description" content="Biometría 100 % software hecha en El Salvador. Tus empleados marcan con reconocimiento facial desde su celular, con ubicación y reportes listos para planilla. Sin biométricos convencionales. $100 al año por sucursal.">
+<meta name="theme-color" content="#13261F">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_SV">
+<meta property="og:site_name" content="BIOCORE">
+<meta property="og:title" content="BIOCORE · Control de asistencia desde el celular">
+<meta property="og:description" content="Tus empleados marcan con reconocimiento facial desde su celular. Sin biométricos convencionales. Tecnología salvadoreña, soporte 24/7 y $100 al año por sucursal.">
+<!-- Al tener el dominio, cambiar por la dirección completa: https://TU-DOMINIO/img/compartir.png -->
+<meta property="og:image" content="img/compartir.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+<script>document.documentElement.classList.add('js');</script>
+<script src="js/menu.js" defer></script>
+</head>
+<body>
+
+<!-- Íconos de línea usados en toda la página -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+  <symbol id="i-empleados" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-reportes" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 18v-2"/><path d="M12 18v-6"/><path d="M16 18v-4"/></symbol>
+  <symbol id="i-justificaciones" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M7 8h10"/><path d="M7 12h6"/></symbol>
+  <symbol id="i-ubicacion" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-horario" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-lista" viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></symbol>
+  <symbol id="i-candado" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></symbol>
+  <symbol id="i-tienda" viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9h18"/><path d="M9 20v-6h6v6"/></symbol>
+  <symbol id="i-celular" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-rostro" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="10" r="2.5"/><path d="M8.5 16c.8-1.4 2-2 3.5-2s2.7.6 3.5 2"/></symbol>
+  <symbol id="i-soporte" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="7" rx="1.5"/><rect x="17.5" y="13" width="4" height="7" rx="1.5"/><path d="M19.5 20a3 3 0 0 1-3 2.5H13"/></symbol>
+  <symbol id="i-calendario" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-mensaje" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-correo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-abajo" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- ═════ Menú ═════ -->
+<header class="encabezado">
+  <div class="contenedor encabezado__fila">
+    <a class="encabezado__logo" href="#inicio" aria-label="BIOCORE, ir al inicio"><img src="img/logo-fondo-claro.svg" alt="BIOCORE" width="180" height="30"></a>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-boton__texto">Menú</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Principal">
+      <a href="#soluciones">Soluciones</a>
+      <a href="#diferencia">Por qué BIOCORE</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#precio">Precio</a>
+      <a href="#contacto">Contacto</a>
+      <a class="boton boton--marca boton--movil" href="#contacto">Solicita tu demo</a>
+    </nav>
+    <a class="boton boton--marca boton--chico encabezado__cta" href="#contacto">Solicita tu demo</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ═════ Portada ═════ -->
+  <section class="hero" id="inicio" aria-labelledby="titulo-portada">
+    <svg class="hexagono-fondo" viewBox="0 0 48 48" aria-hidden="true"><path d="M24,5 L40.45,14.5 L40.45,33.5 L24,43 L7.55,33.5 L7.55,14.5 Z"/></svg>
+    <div class="contenedor hero__fila">
+      <div class="hero__texto">
+        <p class="etiqueta">Tecnología salvadoreña</p>
+        <h1 id="titulo-portada">Control de asistencia desde el celular. <span class="destacado">Sin biométricos convencionales.</span></h1>
+        <p class="hero__bajada">Tus empleados marcan con reconocimiento facial desde su teléfono. Tú ves quién, cuándo y dónde, y recibes los reportes listos para planilla. Sin comprar, instalar ni reparar equipos.</p>
+        <div class="botones">
+          <a class="boton boton--marca" href="#contacto">Solicita tu demo <svg class="ico ico--grueso" aria-hidden="true"><use href="#i-flecha"/></svg></a>
+          <a class="boton boton--contorno" href="#modulos">Ver los módulos</a>
+        </div>
+        <ul class="sellos">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-soporte"/></svg>Soporte 24/7</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-mapa"/></svg>Cobertura nacional</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-calendario"/></svg>$100 al año por sucursal</li>
+        </ul>
+      </div>
+
+      <div class="hero__visual">
+        <div class="telefono" role="img" aria-label="Pantalla de marcaje de BIOCORE en un celular: reconocimiento facial, ubicación y botones de entrada, almuerzo y salida">
+          <div class="telefono__pantalla">
+            <div class="telefono__arriba">
+              <svg viewBox="0 0 48 48" width="32" height="32" aria-hidden="true"><path d="M24,5 L40.45,14.5 L40.45,33.5 L24,43 L7.55,33.5 L7.55,14.5 Z" fill="none" stroke="#1FCB9C" stroke-width="4.6" stroke-linejoin="round"/><circle cx="24" cy="24" r="6.84" fill="#FFFFFF"/></svg>
+              <span class="telefono__ubicacion"><svg class="ico" aria-hidden="true"><use href="#i-ubicacion"/></svg>Oficina central · ±8 m</span>
+            </div>
+            <div class="telefono__hora"><strong>7:58</strong><span>a. m. · lunes</span></div>
+            <svg class="telefono__camara" viewBox="0 0 252 220" aria-hidden="true">
+              <rect x="0" y="0" width="252" height="220" rx="22" fill="#1E293B"/>
+              <ellipse cx="126" cy="98" rx="56" ry="70" fill="#334155"/>
+              <path d="M36 220 C 44 170, 80 152, 126 152 S 208 170, 216 220 Z" fill="#334155"/>
+              <ellipse cx="126" cy="100" rx="78" ry="94" fill="none" stroke="#1FCB9C" stroke-width="3" stroke-dasharray="10 8"/>
+              <g stroke="#1FCB9C" stroke-opacity="0.6" stroke-width="1.4" fill="none">
+                <path d="M86 70 L106 58 L126 54 L146 58 L166 70"/>
+                <path d="M100 88 L114 82 L122 88 M130 88 L138 82 L152 88"/>
+                <path d="M126 92 L126 118 L116 126 L136 126 L126 118"/>
+                <path d="M108 140 L126 146 L144 140"/>
+              </g>
+              <g fill="#1FCB9C">
+                <circle cx="86" cy="70" r="3"/><circle cx="106" cy="58" r="3"/><circle cx="126" cy="54" r="3"/><circle cx="146" cy="58" r="3"/><circle cx="166" cy="70" r="3"/>
+                <circle cx="100" cy="88" r="3"/><circle cx="114" cy="82" r="3"/><circle cx="138" cy="82" r="3"/><circle cx="152" cy="88" r="3"/>
+                <circle cx="116" cy="126" r="3"/><circle cx="136" cy="126" r="3"/><circle cx="108" cy="140" r="3"/><circle cx="126" cy="146" r="3"/><circle cx="144" cy="140" r="3"/>
+              </g>
+            </svg>
+            <div class="telefono__coincidencia">
+              <div><b>Andrea Rivas</b><span>Coincidencia</span></div>
+              <div class="barra"><span style="width: 92%;"></span></div>
+            </div>
+            <div class="telefono__botones">
+              <span class="activo">Entrada</span><span>Salida a almuerzo</span><span>Regreso</span><span>Salida</span>
+            </div>
+          </div>
+        </div>
+        <div class="aviso-marcaje" aria-hidden="true">
+          <div class="aviso-marcaje__check"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></div>
+          <div>
+            <small>ENTRADA REGISTRADA</small>
+            <strong>7:58 a. m. · A tiempo</strong>
+            <span>Dentro de la zona de marcaje</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ Franja de respaldo ═════ -->
+  <section class="franja oscuro" aria-label="Respaldo de BIOCORE">
+    <dl class="contenedor franja__grilla">
+      <div><dt>24/7</dt><dd>Soporte técnico a cualquier hora, todos los días del año.</dd></div>
+      <div><dt>Todo el país</dt><dd>Cobertura en los 14 departamentos, de Ahuachapán a La Unión.</dd></div>
+      <div><dt>$100 al año</dt><dd>Por sucursal, en un solo pago anual.</dd></div>
+      <div><dt>0 equipos</dt><dd>Ni compra, ni instalación, ni mantenimiento.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ═════ Soluciones ═════ -->
+  <section class="seccion" id="soluciones" aria-labelledby="titulo-soluciones">
+    <div class="contenedor pila">
+      <div class="cabecera-seccion">
+        <p class="etiqueta">Lo que ofrece BIOCORE</p>
+        <h2 class="titulo-seccion" id="titulo-soluciones">Todo el control de asistencia, en el celular de tu equipo.</h2>
+        <p class="intro">BIOCORE es biometría 100 % software: un panel para administrar y una pantalla de marcaje que funciona en cualquier celular. Para micro, pequeñas y grandes empresas, con una o muchas sucursales.</p>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta tarjeta--oscura">
+          <div class="tarjeta__icono"><svg class="ico" aria-hidden="true"><use href="#i-rostro"/></svg></div>
+          <h3>Reconocimiento facial con motor propio</h3>
+          <p>Identifica a cada empleado en segundos. Solo marca quien realmente es: nadie marca por un compañero.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta__icono"><svg class="ico" aria-hidden="true"><use href="#i-celular"/></svg></div>
+          <h3>Marcación desde el celular</h3>
+          <p>Entrada, almuerzo y salida desde el propio teléfono del empleado, o desde un kiosco en la sucursal. Sin filas a la hora de entrada.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta__icono"><svg class="ico" aria-hidden="true"><use href="#i-ubicacion"/></svg></div>
+          <h3>Ubicación de cada marcación</h3>
+          <p>Cada sucursal tiene su zona de marcaje en el mapa. Si alguien marca fuera, lo sabes y ves a qué distancia lo hizo.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta__icono"><svg class="ico" aria-hidden="true"><use href="#i-reportes"/></svg></div>
+          <h3>Reportes listos para planilla</h3>
+          <p>Horas trabajadas, horas extra y tardanzas calculadas solas. Descárgalas en Excel, PDF o CSV.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta__icono"><svg class="ico" aria-hidden="true"><use href="#i-mapa"/></svg></div>
+          <h3>Personal de campo bajo control</h3>
+          <p>Rutas del día, clientes visitados, hora de llegada y de salida, y el tiempo que pasaron en cada uno.</p>
+          <p class="nota">Se activa solo si tu empresa lo necesita.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta__icono"><svg class="ico" aria-hidden="true"><use href="#i-escudo"/></svg></div>
+          <h3>Seguridad y auditoría</h3>
+          <p>Administradores por sucursal, verificación en dos pasos y registro de cada cambio: quién, qué, cuándo y desde dónde.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ Diferenciación ═════ -->
+  <section class="seccion seccion--blanca" id="diferencia" aria-labelledby="titulo-diferencia">
+    <div class="contenedor pila">
+      <div class="cabecera-dividida">
+        <div class="cabecera-seccion">
+          <p class="etiqueta">Lo viejo vs. lo nuevo</p>
+          <h2 class="titulo-seccion" id="titulo-diferencia">Los biométricos convencionales ya cumplieron su ciclo.</h2>
+        </div>
+        <p class="intro">Así se diferencia BIOCORE del equipo de pared que muchas empresas todavía usan para controlar la asistencia.</p>
+      </div>
+      <div class="comparativa">
+        <table>
+          <caption class="solo-lectores">Comparación entre un biométrico convencional y BIOCORE</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="col-aspecto">ASPECTO</th>
+              <th scope="col" class="col-viejo">Biométrico convencional</th>
+              <th scope="col" class="col-biocore">
+                <span class="marca-biocore"><svg viewBox="0 0 48 48" width="26" height="26" aria-hidden="true"><path d="M24,5 L40.45,14.5 L40.45,33.5 L24,43 L7.55,33.5 L7.55,14.5 Z" fill="none" stroke="#1FCB9C" stroke-width="4.6" stroke-linejoin="round"/><circle cx="24" cy="24" r="6.84" fill="#FFFFFF"/></svg>BIOCORE</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Equipos</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Hay que comprar e instalar un equipo en cada sede.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">Ninguno: basta el celular de tus empleados o un kiosco en la sucursal.</td>
+            </tr>
+            <tr>
+              <th scope="row">Mantenimiento</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Reparaciones, repuestos y reemplazos.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">Nada que reparar ni reemplazar.</td>
+            </tr>
+            <tr>
+              <th scope="row">Dónde se marca</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Solo frente al equipo instalado.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">Desde cualquier lugar, con la ubicación de cada marcación y una zona de marcaje por sucursal.</td>
+            </tr>
+            <tr>
+              <th scope="row">Si el equipo falla</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Nadie puede marcar, aunque sea quincena.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">No dependes de un solo aparato: cada quien marca desde su celular.</td>
+            </tr>
+            <tr>
+              <th scope="row">Hora de entrada</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Filas frente al equipo.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">Cada quien marca en segundos, sin filas.</td>
+            </tr>
+            <tr>
+              <th scope="row">Personal en campo</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">No hay forma de controlarlo.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">Rutas, visitas a clientes y tiempo en cada una, con GPS.</td>
+            </tr>
+            <tr>
+              <th scope="row">Reportes</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Se descargan y se arman a mano para la planilla.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">Horas, extras y tardanzas calculadas solas, en Excel, PDF o CSV.</td>
+            </tr>
+            <tr>
+              <th scope="row">Origen y soporte</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Tecnología traída de fuera.</td>
+              <td class="biocore" data-etiqueta="BIOCORE">Tecnología salvadoreña, con soporte 24/7.</td>
+            </tr>
+            <tr>
+              <th scope="row">Costo</th>
+              <td class="viejo" data-etiqueta="Biométrico convencional">Inversión en equipos, más mantenimiento.</td>
+              <td class="biocore" data-etiqueta="BIOCORE"><strong>$100 al año por sucursal</strong>, en un solo pago.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ Imágenes de los módulos ═════ -->
+  <section class="seccion" id="modulos" aria-labelledby="titulo-modulos" style="padding-bottom: 0;">
+    <div class="contenedor pila">
+      <div class="cabecera-seccion">
+        <p class="etiqueta">El sistema por dentro</p>
+        <h2 class="titulo-seccion" id="titulo-modulos">Un panel para toda tu empresa.</h2>
+        <p class="intro">Así se ven algunos de los módulos de BIOCORE: lo que pasa hoy en tu empresa, dónde se puede marcar y los reportes para planilla.</p>
+      </div>
+
+      <!-- Módulo: Dashboard -->
+      <figure class="modulo">
+        <div class="ventana">
+          <div class="ventana__barra" aria-hidden="true"><i></i><i></i><i></i><span>BIOCORE · Dashboard</span></div>
+          <div class="ventana__desliza" tabindex="0" role="img" aria-label="Módulo Dashboard de BIOCORE: asistencia de hoy, ausentes, tardanzas, mapa de marcaciones y lista del personal">
+            <div class="panel" aria-hidden="true">
+              <div class="panel__lateral">
+                <div class="panel__logo"><img src="img/logo-fondo-oscuro.svg" alt=""></div>
+                <div class="panel__empresa"><span>Empresa</span><b>Tu empresa</b></div>
+                <div class="panel__nav">
+                  <span class="activo"><svg class="ico"><use href="#i-dashboard"/></svg>Dashboard</span>
+                  <span><svg class="ico"><use href="#i-empleados"/></svg>Empleados</span>
+                  <span><svg class="ico"><use href="#i-reportes"/></svg>Reportes</span>
+                  <span><svg class="ico"><use href="#i-justificaciones"/></svg>Justificaciones<em>2</em></span>
+                  <span class="grupo">Configuración</span>
+                  <span><svg class="ico"><use href="#i-ubicacion"/></svg>Sucursales</span>
+                  <span><svg class="ico"><use href="#i-horario"/></svg>Horarios</span>
+                  <span><svg class="ico"><use href="#i-escudo"/></svg>Administradores</span>
+                  <span><svg class="ico"><use href="#i-lista"/></svg>Auditoría</span>
+                </div>
+                <div class="panel__usuario"><i>AR</i><div><strong>Ana Ramírez</strong><small>Administrador principal</small></div></div>
+              </div>
+              <div class="panel__principal">
+                <div class="panel__titulo">
+                  <strong>Dashboard</strong>
+                  <div class="panel__controles">
+                    <div class="panel__control"><span>Sucursal:</span><b>Todas</b><svg class="ico"><use href="#i-abajo"/></svg></div>
+                    <div class="panel__control"><b>Actualizar</b></div>
+                  </div>
+                </div>
+                <div class="kpis">
+                  <div class="kpi kpi--verde"><span>Asistencia hoy</span><strong>46 <small>/ 50</small></strong><em>92 % ya marcó entrada</em></div>
+                  <div class="kpi"><span>En la empresa ahora</span><strong>44</strong><em>2 en almuerzo</em></div>
+                  <div class="kpi"><span>Ausentes</span><strong>4</strong><em>con turno ya iniciado</em></div>
+                  <div class="kpi"><span>Tardanzas hoy</span><strong>3</strong><em>27 min en total</em></div>
+                  <div class="kpi"><span>Justificaciones</span><strong>2</strong><em class="enlace">por revisar →</em></div>
+                </div>
+                <div class="panel__dos">
+                  <div class="caja">
+                    <div class="caja__titulo">Dónde marcaron hoy <small>3 sucursales</small></div>
+                    <svg class="mapa" viewBox="0 0 520 260">
+                      <rect x="0" y="0" width="520" height="260" fill="#E6EEEA"/>
+                      <path d="M-10 190 C 120 170, 200 120, 300 126 S 460 90, 540 104" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
+                      <path d="M170 -10 C 186 80, 176 170, 214 270" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+                      <path d="M380 -10 L 360 270" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+                      <path d="M0 60 H520 M0 236 H520" stroke="#FFFFFF" stroke-width="4"/>
+                      <circle cx="120" cy="110" r="54" fill="#00A37F" fill-opacity="0.12" stroke="#00A37F" stroke-width="2" stroke-dasharray="7 6"/>
+                      <circle cx="300" cy="190" r="44" fill="#00A37F" fill-opacity="0.12" stroke="#00A37F" stroke-width="2" stroke-dasharray="7 6"/>
+                      <circle cx="440" cy="70" r="40" fill="#00A37F" fill-opacity="0.12" stroke="#00A37F" stroke-width="2" stroke-dasharray="7 6"/>
+                      <g fill="#00A37F" stroke="#FFFFFF" stroke-width="2">
+                        <circle cx="104" cy="98" r="7"/><circle cx="130" cy="120" r="7"/><circle cx="118" cy="84" r="7"/><circle cx="140" cy="96" r="7"/>
+                        <circle cx="288" cy="184" r="7"/><circle cx="312" cy="200" r="7"/><circle cx="300" cy="170" r="7"/>
+                        <circle cx="430" cy="62" r="7"/><circle cx="452" cy="80" r="7"/>
+                      </g>
+                      <rect x="462" y="98" width="14" height="14" rx="3" fill="#13261F"/>
+                      <path d="M134 128 L 222 196" stroke="#13261F" stroke-width="1.8" stroke-dasharray="5 5"/>
+                      <circle cx="226" cy="200" r="8" fill="#FFFFFF" stroke="#13261F" stroke-width="3"/>
+                      <rect x="150" y="214" width="96" height="26" rx="13" fill="#13261F"/>
+                      <text x="198" y="231" text-anchor="middle" font-family="Archivo, system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Fuera · 350 m</text>
+                    </svg>
+                    <div class="leyenda">
+                      <span><i></i>Dentro de la zona · 41</span>
+                      <span><i class="fuera"></i>Fuera de zona · 2</span>
+                      <span><i class="kiosco"></i>Kiosco · 3</span>
+                    </div>
+                  </div>
+                  <div class="caja">
+                    <div class="caja__titulo">Personal hoy</div>
+                    <div class="mini-tabla mini-tabla--personal">
+                      <div class="mini-tabla__fila mini-tabla__cab"><div>EMPLEADO</div><div>TURNO</div><div>ENTRADA</div><div>ESTADO</div></div>
+                      <div class="mini-tabla__fila"><div class="persona"><b>Andrea Rivas</b><span>Cajera</span></div><div class="tenue">8:00 – 5:00</div><b>7:52</b><div><span class="chip chip--ok">A tiempo</span></div></div>
+                      <div class="mini-tabla__fila"><div class="persona"><b>Carlos Martínez</b><span>Bodega</span></div><div class="tenue">7:00 – 4:00</div><b>7:09</b><div><span class="chip chip--tarde">Tarde · 9 min</span></div></div>
+                      <div class="mini-tabla__fila"><div class="persona"><b>Sofía Guzmán</b><span>Ventas</span></div><div class="tenue">8:00 – 5:00</div><b>7:58</b><div><span class="chip chip--ok">A tiempo</span></div></div>
+                      <div class="mini-tabla__fila"><div class="persona"><b>José López</b><span>Vendedor de ruta</span></div><div class="tenue">8:00 – 5:00</div><b>8:02</b><div><span class="chip chip--fuera">Fuera de zona</span></div></div>
+                      <div class="mini-tabla__fila"><div class="persona"><b>Luis Pérez</b><span>Supervisor</span></div><div class="tenue">8:00 – 5:00</div><b class="tenue">—</b><div><span class="chip chip--ausente">Ausente</span></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="desliza-aviso" aria-hidden="true">Desliza la imagen para verla completa →</p>
+        <figcaption><b>Dashboard.</b> Quién llegó, quién falta, las tardanzas del día y dónde marcó cada empleado, en una sola pantalla.</figcaption>
+      </figure>
+
+      <div class="modulos-par">
+        <!-- Módulo: Sucursales -->
+        <figure class="modulo">
+          <div class="ventana">
+            <div class="ventana__barra" aria-hidden="true"><i></i><i></i><i></i><span>BIOCORE · Sucursales</span></div>
+            <div class="ventana__cuerpo" role="img" aria-label="Módulo Sucursales de BIOCORE: mapa con la zona de marcaje de 120 metros y datos de la sede">
+              <div aria-hidden="true" style="display: flex; flex-direction: column; gap: 16px;">
+                <div><h4>Nueva sucursal</h4><p class="sub">Datos de la sede y zona donde se permite marcar desde el celular.</p></div>
+                <svg class="mapa" viewBox="0 0 520 210">
+                  <rect x="0" y="0" width="520" height="210" fill="#E6EEEA"/>
+                  <path d="M-10 150 C 140 136, 230 92, 330 100 S 470 70, 540 80" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
+                  <path d="M240 -10 L 270 220" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+                  <path d="M0 40 H520 M0 190 H520 M90 0 V210 M430 0 V210" stroke="#FFFFFF" stroke-width="3"/>
+                  <circle cx="262" cy="104" r="74" fill="#00A37F" fill-opacity="0.16" stroke="#00A37F" stroke-width="2.5"/>
+                  <path d="M262 104 L 336 104" stroke="#007A5F" stroke-width="2" stroke-dasharray="5 4"/>
+                  <rect x="276" y="86" width="56" height="22" rx="11" fill="#13261F"/>
+                  <text x="304" y="101" text-anchor="middle" font-family="Archivo, system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">120 m</text>
+                  <path d="M262 104 c-13 -17 -20 -27 -20 -37 a20 20 0 0 1 40 0 c0 10 -7 20 -20 37z" fill="#13261F"/>
+                  <circle cx="262" cy="67" r="7" fill="#1FCB9C"/>
+                </svg>
+                <div class="formulario">
+                  <div><span>Nombre de la sede</span><b>Sucursal Santa Tecla</b></div>
+                  <div><span>Radio permitido</span><b>120 m</b></div>
+                  <div><span>Horario predeterminado</span><b>L–V 8:00 a. m. – 5:00 p. m.</b></div>
+                  <div><span>Zona horaria</span><b>America/El_Salvador</b></div>
+                </div>
+                <div class="acciones"><span>Cancelar</span><span class="primario">Guardar</span></div>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Sucursales.</b> Ubica cada sede en el mapa y define el radio donde se permite marcar desde el celular.</figcaption>
+        </figure>
+
+        <!-- Módulo: Reportes -->
+        <figure class="modulo">
+          <div class="ventana">
+            <div class="ventana__barra" aria-hidden="true"><i></i><i></i><i></i><span>BIOCORE · Reportes</span></div>
+            <div class="ventana__cuerpo" role="img" aria-label="Módulo Reportes de BIOCORE: resumen general de la quincena con días, horas normales, extra y tardanza, exportable a Excel, PDF o CSV">
+              <div aria-hidden="true" style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="reporte__arriba">
+                  <div class="segmentado"><span>Por empleado</span><span class="activo">General · planilla</span></div>
+                  <div class="exportar"><span class="primario">Excel</span><span>PDF</span><span>CSV</span></div>
+                </div>
+                <div class="atajos"><span>Hoy</span><span>Esta semana</span><span class="activo">Quincena actual</span><span>Este mes</span></div>
+                <div><h4>Resumen general de asistencia</h4><p class="sub">Todas las sucursales · 50 empleados · 1 al 15 de octubre</p></div>
+                <div class="desliza-x"><div class="mini-tabla mini-tabla--reporte">
+                  <div class="mini-tabla__fila mini-tabla__cab"><div>EMPLEADO</div><div>DÍAS</div><div>NORMALES</div><div>EXTRA</div><div>TARDANZA</div></div>
+                  <div class="mini-tabla__fila"><b>Andrea Rivas</b><div>11</div><div>88.0</div><div>2.5</div><div>0 min</div></div>
+                  <div class="mini-tabla__fila"><b>Carlos Martínez</b><div>11</div><div>87.5</div><div>4.0</div><div>9 min</div></div>
+                  <div class="mini-tabla__fila"><b>José López</b><div>10</div><div>78.5</div><div>0.0</div><div>22 min</div></div>
+                  <div class="mini-tabla__fila"><b>Sofía Guzmán</b><div>11</div><div>88.0</div><div>1.0</div><div>0 min</div></div>
+                  <div class="mini-tabla__fila"><b>Luis Pérez</b><div>10</div><div>80.0</div><div>3.5</div><div>5 min</div></div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+          <figcaption><b>Reportes.</b> Elige la quincena y descarga horas normales, extra y tardanzas de todo tu personal.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ Tabla de módulos ═════ -->
+  <section class="seccion" aria-labelledby="titulo-tabla">
+    <div class="contenedor pila">
+      <div class="cabecera-seccion">
+        <p class="etiqueta">Módulos</p>
+        <h2 class="titulo-seccion" id="titulo-tabla">Qué puedes hacer en cada módulo.</h2>
+        <p class="intro">BIOCORE se organiza por módulos. Cada administrador ve solo las sucursales que le corresponden.</p>
+      </div>
+      <div class="tabla-modulos">
+        <table>
+          <thead>
+            <tr><th scope="col">MÓDULO</th><th scope="col">QUÉ PUEDES HACER</th></tr>
+          </thead>
+          <tbody>
+            <tr class="grupo"><th colspan="2" scope="colgroup">PANEL DE ADMINISTRACIÓN</th></tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-dashboard"/></svg></div><div><strong>Dashboard</strong><span>Tu empresa de un vistazo</span></div></div></th>
+              <td><ul>
+                <li>Quién marcó entrada, quién está en la empresa ahora, ausentes y tardanzas del día.</li>
+                <li>Mapa de dónde marcaron hoy y las marcaciones que requieren revisión.</li>
+                <li>Resumen de la semana: días, horas normales, horas extra y tardanza.</li>
+                <li>Filtra todo por sucursal.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-empleados"/></svg></div><div><strong>Empleados</strong><span>Tu personal, con reconocimiento facial</span></div></div></th>
+              <td><ul>
+                <li>Registra a cada empleado con una captura facial guiada de 5 fotos.</li>
+                <li>Asigna cargo, departamento, sucursal y horario de trabajo.</li>
+                <li>Busca por nombre y filtra por sucursal o por activos e inactivos.</li>
+                <li>Vuelve a capturar el rostro si cambió su apariencia, o desactiva a alguien sin perder su historial.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-reportes"/></svg></div><div><strong>Reportes</strong><span>Listos para planilla</span></div></div></th>
+              <td><ul>
+                <li>Reporte por empleado o general para la planilla.</li>
+                <li>Atajos: hoy, esta semana, quincena actual o anterior, este mes o el anterior.</li>
+                <li>Entrada, almuerzo, salida, horas trabajadas, normales, extra y tardanza, día por día.</li>
+                <li>Exporta a Excel, PDF o CSV.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-justificaciones"/></svg></div><div><strong>Justificaciones</strong><span>Salidas imprevistas, en orden</span></div></div></th>
+              <td><ul>
+                <li>Revisa las salidas imprevistas y por enfermedad que reportan tus empleados, con su motivo escrito o una nota de voz.</li>
+                <li>Aprueba o rechaza cada una.</li>
+                <li>El menú te avisa cuántas quedan pendientes.</li>
+              </ul></td>
+            </tr>
+
+            <tr class="grupo"><th colspan="2" scope="colgroup">CONFIGURACIÓN Y SEGURIDAD</th></tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-ubicacion"/></svg></div><div><strong>Sucursales</strong><span>Tus sedes y su zona de marcaje</span></div></div></th>
+              <td><ul>
+                <li>Crea cada sede con su código, dirección y zona horaria.</li>
+                <li>Ubícala en el mapa y define el radio donde se permite marcar desde el celular.</li>
+                <li>Asígnale un horario predeterminado y ve cuántos empleados tiene.</li>
+                <li>Convierte un equipo de la sucursal en kiosco de marcaje.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-horario"/></svg></div><div><strong>Horarios</strong><span>La base de tardanzas y horas extra</span></div></div></th>
+              <td><ul>
+                <li>Plantillas semanales: qué días se trabaja, hora de entrada, de salida y minutos de almuerzo.</li>
+                <li>Tolerancia de entrada y mínimo de minutos para contar hora extra.</li>
+                <li>Turnos nocturnos que terminan al día siguiente.</li>
+                <li>Asigna un horario a varios empleados a la vez.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-escudo"/></svg></div><div><strong>Administradores</strong><span>Cada encargado ve lo suyo</span></div></div></th>
+              <td><ul>
+                <li>Crea cuentas para los encargados de cada sucursal.</li>
+                <li>Define qué sucursales ve cada uno; el administrador principal ve toda la empresa.</li>
+                <li>Consulta el último acceso de cada administrador y cambia contraseñas.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-lista"/></svg></div><div><strong>Auditoría</strong><span>Todo queda registrado</span></div></div></th>
+              <td><ul>
+                <li>Historial de lo que hace cada administrador: quién, qué, cuándo y desde dónde.</li>
+                <li>Filtra por tipo de acción para encontrar un cambio rápido.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-candado"/></svg></div><div><strong>Mi cuenta</strong><span>Acceso protegido</span></div></div></th>
+              <td><ul>
+                <li>Cambia tu contraseña de acceso al panel.</li>
+                <li>Activa la verificación en dos pasos con Google Authenticator o Microsoft Authenticator, con códigos de respaldo.</li>
+              </ul></td>
+            </tr>
+
+            <tr class="grupo"><th colspan="2" scope="colgroup">PERSONAL DE CAMPO<span>· Se activa solo si tu empresa lo necesita</span></th></tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-mapa"/></svg></div><div><strong>Rutas y visitas</strong><span>Tu equipo en la calle</span></div></div></th>
+              <td><ul>
+                <li>Arma la ruta del día de cada empleado de campo, o cópiala de otra fecha.</li>
+                <li>Ve qué clientes visitó, a qué hora llegó y salió, y cuánto tiempo estuvo en cada uno.</li>
+                <li>Recibe el resultado de cada visita, con notas y hasta 4 fotos.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono"><svg class="ico" aria-hidden="true"><use href="#i-tienda"/></svg></div><div><strong>Clientes</strong><span>Los lugares que visitan</span></div></div></th>
+              <td><ul>
+                <li>Registra cada cliente con su ubicación y radio de llegada: el sistema confirma que el empleado de verdad llegó.</li>
+                <li>Importa tu lista de clientes desde Excel o CSV.</li>
+                <li>Consulta las visitas de los últimos 30 días.</li>
+              </ul></td>
+            </tr>
+
+            <tr class="grupo"><th colspan="2" scope="colgroup">PARA TUS EMPLEADOS</th></tr>
+            <tr>
+              <th scope="row"><div class="modulo-nombre"><div class="modulo-nombre__icono modulo-nombre__icono--oscuro"><svg class="ico" aria-hidden="true"><use href="#i-celular"/></svg></div><div><strong>Pantalla de marcaje</strong><span>En su celular o en un kiosco</span></div></div></th>
+              <td><ul>
+                <li>Marcan entrada, salida a almuerzo, regreso y salida con reconocimiento facial.</li>
+                <li>Cada marcación guarda su ubicación, y la pantalla avisa si el GPS está apagado.</li>
+                <li>Reportan una salida imprevista o por enfermedad con un motivo o una nota de voz.</li>
+                <li>El personal de campo registra su llegada y salida de cada cliente.</li>
+                <li>Funciona en el navegador del celular, con el enlace de tu empresa.</li>
+              </ul></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ Precio y respaldo ═════ -->
+  <section class="seccion seccion--blanca" id="precio" aria-labelledby="titulo-precio">
+    <div class="contenedor pila">
+      <div class="cabecera-seccion">
+        <p class="etiqueta">Precio y respaldo</p>
+        <h2 class="titulo-seccion" id="titulo-precio">Un pago al año por sucursal. Sin equipos que comprar.</h2>
+      </div>
+      <div class="precio-fila">
+        <div class="precio oscuro">
+          <svg class="hexagono-fondo" viewBox="0 0 48 48" aria-hidden="true"><path d="M24,5 L40.45,14.5 L40.45,33.5 L24,43 L7.55,33.5 L7.55,14.5 Z"/></svg>
+          <p class="etiqueta">Pago único anual</p>
+          <p class="precio__monto"><strong>$100</strong><span>al año por sucursal</span></p>
+          <ul class="lista-check">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Panel de administración y pantalla de marcaje</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Reconocimiento facial con motor propio</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Reportes para planilla en Excel, PDF o CSV</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Soporte técnico 24/7</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Sin comprar, instalar ni reparar equipos</li>
+          </ul>
+          <p class="precio__nota">¿Tienes personal en ruta? El módulo de campo se activa solo si tu empresa lo necesita.</p>
+          <a class="boton boton--brillante" href="#contacto">Solicita tu demo</a>
+        </div>
+        <div class="respaldo">
+          <article class="respaldo__item">
+            <div class="respaldo__icono"><svg class="ico" aria-hidden="true"><use href="#i-soporte"/></svg></div>
+            <div><h3>Soporte 24/7</h3><p>Te atendemos a cualquier hora, cualquier día, en español y con un equipo salvadoreño que conoce el sistema por dentro.</p></div>
+          </article>
+          <article class="respaldo__item">
+            <div class="respaldo__icono"><svg class="ico" aria-hidden="true"><use href="#i-mapa"/></svg></div>
+            <div><h3>Cobertura a nivel nacional</h3><p>Atendemos empresas en los 14 departamentos de El Salvador, en tus oficinas o en línea.</p></div>
+          </article>
+          <article class="respaldo__item">
+            <div class="respaldo__icono respaldo__icono--oscuro"><svg viewBox="0 0 48 48" width="32" height="32" aria-hidden="true"><path d="M24,5 L40.45,14.5 L40.45,33.5 L24,43 L7.55,33.5 L7.55,14.5 Z" fill="none" stroke="#1FCB9C" stroke-width="4.6" stroke-linejoin="round"/><circle cx="24" cy="24" r="6.84" fill="#FFFFFF"/></svg></div>
+            <div><h3>Hecho en El Salvador</h3><p>Biometría 100 % software, con su propio motor de reconocimiento facial, desarrollada aquí por salvadoreños.</p></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ Cómo empezar ═════ -->
+  <section class="seccion" aria-labelledby="titulo-pasos">
+    <div class="contenedor pila">
+      <div class="cabecera-seccion">
+        <p class="etiqueta">Cómo empezar</p>
+        <h2 class="titulo-seccion" id="titulo-pasos">Tu empresa queda lista en tres pasos.</h2>
+      </div>
+      <ol class="pasos">
+        <li><span class="paso__numero" aria-hidden="true">1</span><h3>Registramos tu empresa</h3><p>Tus sucursales, horarios y administradores quedan configurados en tu panel.</p></li>
+        <li><span class="paso__numero" aria-hidden="true">2</span><h3>Registras a tu personal</h3><p>Cada empleado registra su rostro una sola vez, con una captura guiada.</p></li>
+        <li class="oscuro"><span class="paso__numero" aria-hidden="true">3</span><h3>¡Listo, ya pueden marcar!</h3><p>Desde su celular o un kiosco. Y tú ves todo desde tu panel, en cualquier lugar.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═════ Llamada final y contacto ═════ -->
+  <section class="contacto oscuro" id="contacto" aria-labelledby="titulo-contacto">
+    <svg class="hexagono-fondo" viewBox="0 0 48 48" aria-hidden="true"><path d="M24,5 L40.45,14.5 L40.45,33.5 L24,43 L7.55,33.5 L7.55,14.5 Z"/></svg>
+    <div class="contenedor contacto__fila">
+      <div class="contacto__texto">
+        <p class="etiqueta">Agenda tu demo</p>
+        <h2 id="titulo-contacto">Adiós a los biométricos convencionales. <span class="destacado">Hola, BIOCORE.</span></h2>
+        <p>Te mostramos BIOCORE funcionando con un caso de tu propia empresa, en tus oficinas o en línea, sin costo.</p>
+        <div class="botones">
+          <a class="boton boton--brillante" href="https://wa.me/50370564109?text=Hola%2C%20quiero%20una%20demo%20de%20BIOCORE" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-mensaje"/></svg>Escríbenos por WhatsApp</a>
+          <a class="boton boton--contorno-claro" href="mailto:biocore.sv@gmail.com?subject=Demo%20de%20BIOCORE">Enviar un correo</a>
+        </div>
+      </div>
+      <ul class="datos">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-celular"/></svg><div><span class="datos__tipo">Teléfono / WhatsApp</span><a class="datos__valor" href="https://wa.me/50370564109" target="_blank" rel="noopener">+503 7056-4109</a></div></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-correo"/></svg><div><span class="datos__tipo">Correo</span><a class="datos__valor" href="mailto:biocore.sv@gmail.com">biocore.sv@gmail.com</a></div></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-ubicacion"/></svg><div><span class="datos__tipo">Oficina</span><span class="datos__valor">San Salvador, El Salvador</span></div></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ═════ Pie ═════ -->
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__arriba">
+      <div class="pie__marca">
+        <img src="img/logo-fondo-oscuro.svg" alt="BIOCORE" width="168" height="28">
+        <p>Biometría desde el celular. Tecnología salvadoreña.</p>
+      </div>
+      <nav aria-label="Pie de página">
+        <a href="#soluciones">Soluciones</a>
+        <a href="#diferencia">Por qué BIOCORE</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#precio">Precio</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+    <div class="pie__abajo">
+      <span>© 2026 BIOCORE. Todos los derechos reservados.</span>
+      <span>Hecho en El Salvador</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
