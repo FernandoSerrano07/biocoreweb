@@ -51,5 +51,5 @@ Cualquier hosting de sitios estáticos sirve. Con GitHub Pages:
 
 - Siempre decimos **"biométricos convencionales"**, nunca "reloj marcador".
 - Texto verde sobre fondo claro: `--brand-strong` (#007A5F). Botones verdes con texto oscuro, nunca blanco.
-- Precio: **$100 al año por sucursal**, pago único anual. El módulo de campo se activa solo si la empresa lo necesita.
+- La página no muestra precios por ahora. El módulo de campo se activa solo si la empresa lo necesita.
 - Las imágenes de los módulos (Dashboard, Sucursales, Reportes) están hechas en HTML a partir de las pantallas reales del sistema; se pueden cambiar por capturas reales.
