@@ -378,9 +378,7 @@ section[id] { scroll-margin-top: 84px; }
 }
 .precio > * { position: relative; }
 .precio .hexagono-fondo { position: absolute; right: -170px; bottom: -190px; width: 420px; height: 420px; stroke: var(--brand-bright); stroke-width: 1.6; opacity: .16; }
-.precio__monto { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
-.precio__monto strong { font-size: clamp(72px, 8vw, 104px); line-height: 1; font-weight: 800; letter-spacing: -.02em; font-stretch: 110%; }
-.precio__monto span { font-size: 22px; line-height: 28px; font-weight: 700; color: var(--texto-sobre-noche); }
+.precio__titular { max-width: 520px; font-size: clamp(30px, 3.2vw, 40px); line-height: 1.12; font-weight: 800; letter-spacing: -.01em; font-stretch: 105%; }
 .lista-check { display: flex; flex-direction: column; gap: 14px; margin: 8px 0 0; padding: 0; list-style: none; font-size: 17px; line-height: 24px; }
 .lista-check li { display: flex; gap: 12px; align-items: flex-start; }
 .lista-check .ico { width: 22px; height: 22px; margin-top: 1px; color: var(--brand-bright); stroke-width: 2.6; }
